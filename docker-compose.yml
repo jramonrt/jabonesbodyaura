@@ -1,0 +1,104 @@
+version: '3.9'
+
+# ============================================================
+# Bodyaura — Full Stack Docker Compose
+# Services: Next.js | .NET | PHP | MySQL
+# ============================================================
+
+services:
+
+  # ---- MySQL Database ----
+  mysql:
+    image: mysql:8.0
+    container_name: bodyaura-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pass_2025
+      MYSQL_DATABASE: bodyaura_db
+      MYSQL_USER: bodyaura_user
+      MYSQL_PASSWORD: bodyaura_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/bodyaura.sql:/docker-entrypoint-initdb.d/bodyaura.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+    networks:
+      - bodyaura-net
+
+  # ---- Next.js Frontend + API ----
+  nextjs:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: bodyaura-nextjs
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: mysql://root:Minazuki-r00tm@localhost:3306/bodyaura_db
+      DOTNET_API_URL: http://dotnet:5000
+      DOTNET_API_KEY: bodyaura-dotnet-secret-key-2025
+      PHP_API_URL: http://php:80
+      PHP_API_SECRET: bodyaura-php-secret-2025
+      NEXT_PUBLIC_PRODUCT_PRICE: "180"
+      NODE_ENV: production
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - bodyaura-net
+
+  # ---- .NET Order Microservice ----
+  dotnet:
+    build:
+      context: ./backend-dotnet
+      dockerfile: Dockerfile
+    container_name: bodyaura-dotnet
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      ConnectionStrings__DefaultConnection: >
+        Server=mysql;Database=bodyaura_db;User=bodyaura_user;Password=bodyaura_pass;
+      ApiKey: bodyaura-dotnet-secret-key-2025
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:5000
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - bodyaura-net
+
+  # ---- PHP Backend ----
+  php:
+    build:
+      context: ./backend-php
+      dockerfile: Dockerfile
+    container_name: bodyaura-php
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: bodyaura_db
+      DB_USER: bodyaura_user
+      DB_PASS: bodyaura_pass
+      PHP_API_SECRET: bodyaura-php-secret-2025
+      CORS_ORIGIN: http://localhost:3000
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - bodyaura-net
+
+volumes:
+  mysql_data:
+
+networks:
+  bodyaura-net:
+    driver: bridge

@@ -1,0 +1,49 @@
+# ============================================================
+# Bodyaura — .gitignore completo
+# ============================================================
+
+# ─── Next.js / Node ───────────────────────────────────────
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+
+# ─── Variables de entorno — NUNCA subir ───────────────────
+**/.env
+**/.env.local
+**/.env.*.local
+**/.env.development
+**/.env.production
+**/.env.example
+
+# ─── Prisma ───────────────────────────────────────────────
+frontend/prisma/migrations/
+
+# ─── .NET ─────────────────────────────────────────────────
+backend-dotnet/bin/
+backend-dotnet/obj/
+backend-dotnet/logs/
+backend-dotnet/*.user
+backend-dotnet/.vs/
+
+# ─── PHP ──────────────────────────────────────────────────
+backend-php/vendor/
+backend-php/.htaccess.local
+
+# ─── Base de datos ────────────────────────────────────────
+# No subir dumps con datos reales
+database/*.dump.sql
+database/*.backup.sql
+
+# ─── Sistema operativo ────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.tmp
+
+# ─── IDEs ─────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.suo
+*.user
