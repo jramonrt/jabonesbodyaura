@@ -44,7 +44,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 // CORS
 builder.Services.AddCors(opts =>
     opts.AddPolicy("BodyauraCors", policy =>
-        policy.WithOrigins("http://localhost:3000", "https://bodyaura.mx")
+        policy.AllowAnyOrigin()
               .AllowAnyHeader()
               .AllowAnyMethod()));
 
