@@ -4,9 +4,9 @@ import { useEffect, useRef, useCallback } from 'react';
 import { Leaf, Droplets, Sparkles } from 'lucide-react'; // Iconos para las tarjetas
 
 /* ─── Config ──────────────────────────────────────────────── */
-const TOTAL_FRAMES  = 120;
-const FRAME_WIDTH   = 1920;
-const FRAME_HEIGHT  = 1080;
+const TOTAL_FRAMES = 120;
+const FRAME_WIDTH = 1920;
+const FRAME_HEIGHT = 1080;
 const SCROLL_HEIGHT = '500vh';
 
 const frameSrc = (n: number) =>
@@ -21,8 +21,8 @@ const OVERLAYS = [
     startFrame: 15,
     endFrame: 45,
     // Empujado más a la izquierda (5%) y un poco más arriba
-    position: 'left-[5%] top-[25%]', 
-    icon: <Leaf size={20} className="text-[#5eaa7f]" />,
+    position: 'left-[5%] top-[25%]',
+    icon: <Leaf size={20} className="text-[#6B5038]" />,
     title: 'Origen Natural',
     description: 'Nuestros ingredientes nacen de la tierra, cosechados en su punto de máxima pureza para cuidar tu piel.'
   },
@@ -31,7 +31,7 @@ const OVERLAYS = [
     startFrame: 50,
     endFrame: 80,
     // Empujado más a la derecha (5%)
-    position: 'right-[5%] top-[45%]', 
+    position: 'right-[5%] top-[45%]',
     icon: <Droplets size={20} className="text-[#5eaa7f]" />,
     title: 'Textura Sedosa',
     description: 'Una espuma densa y suave que limpia sin resecar, respetando el pH natural de tu cuerpo.'
@@ -41,8 +41,8 @@ const OVERLAYS = [
     startFrame: 85,
     endFrame: 115,
     // De vuelta a la izquierda, más abajo
-    position: 'left-[5%] bottom-[20%]', 
-    icon: <Sparkles size={20} className="text-[#5eaa7f]" />,
+    position: 'left-[5%] bottom-[20%]',
+    icon: <Sparkles size={20} className="text-[#6B5038]" />,
     title: 'Cero Químicos',
     description: 'Sin sulfatos, sin parabenos, sin fragancias artificiales. Solo la esencia pura de la naturaleza.'
   }
@@ -50,36 +50,36 @@ const OVERLAYS = [
 
 /* ─── Component ───────────────────────────────────────────── */
 export default function ScrollVideoSection() {
-  const sectionRef  = useRef<HTMLElement>(null);
-  const canvasRef   = useRef<HTMLCanvasElement>(null);
-  const framesRef   = useRef<HTMLImageElement[]>([]);
-  const currentRef  = useRef<number>(-1);
-  const targetRef   = useRef<number>(0);
-  const rafRef      = useRef<number>(0);
-  const readyRef    = useRef<boolean>(false);
-  const loaderRef   = useRef<HTMLDivElement>(null);
-  const fillRef     = useRef<HTMLDivElement>(null);
-  const countRef    = useRef<HTMLSpanElement>(null);
-  const hintRef     = useRef<HTMLDivElement>(null);
-  
+  const sectionRef = useRef<HTMLElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const framesRef = useRef<HTMLImageElement[]>([]);
+  const currentRef = useRef<number>(-1);
+  const targetRef = useRef<number>(0);
+  const rafRef = useRef<number>(0);
+  const readyRef = useRef<boolean>(false);
+  const loaderRef = useRef<HTMLDivElement>(null);
+  const fillRef = useRef<HTMLDivElement>(null);
+  const countRef = useRef<HTMLSpanElement>(null);
+  const hintRef = useRef<HTMLDivElement>(null);
+
   // Referencias para las tarjetas flotantes
   const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const scale  = Math.max(
-      window.innerWidth  / FRAME_WIDTH,
+    const scale = Math.max(
+      window.innerWidth / FRAME_WIDTH,
       window.innerHeight / FRAME_HEIGHT,
     );
-    canvas.width  = Math.round(FRAME_WIDTH  * scale);
+    canvas.width = Math.round(FRAME_WIDTH * scale);
     canvas.height = Math.round(FRAME_HEIGHT * scale);
     if (readyRef.current) drawFrame(currentRef.current < 0 ? 0 : currentRef.current);
   }, []);
 
   const drawFrame = useCallback((index: number) => {
     const canvas = canvasRef.current;
-    const img    = framesRef.current[index];
+    const img = framesRef.current[index];
     if (!canvas || !img?.complete) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -130,13 +130,13 @@ export default function ScrollVideoSection() {
       framesRef.current = new Array(TOTAL_FRAMES);
 
       for (let i = 0; i < TOTAL_FRAMES; i++) {
-        const img   = new Image();
+        const img = new Image();
         const index = i;
 
         img.onload = img.onerror = () => {
           loaded++;
           const pct = (loaded / TOTAL_FRAMES) * 100;
-          if (fillRef.current)  fillRef.current.style.width = `${pct}%`;
+          if (fillRef.current) fillRef.current.style.width = `${pct}%`;
           if (countRef.current) countRef.current.textContent = `${loaded} / ${TOTAL_FRAMES}`;
           if (loaded === TOTAL_FRAMES) resolve();
         };
@@ -150,7 +150,7 @@ export default function ScrollVideoSection() {
   const getProgress = useCallback((): number => {
     const section = sectionRef.current;
     if (!section) return 0;
-    const rect  = section.getBoundingClientRect();
+    const rect = section.getBoundingClientRect();
     const total = section.offsetHeight - window.innerHeight;
     return Math.max(0, Math.min(-rect.top / total, 1));
   }, []);
@@ -203,8 +203,8 @@ export default function ScrollVideoSection() {
   return (
     <section
       ref={sectionRef}
-      style={{ 
-        position: 'relative', 
+      style={{
+        position: 'relative',
         height: SCROLL_HEIGHT,
         background: '#0a0a0a',
         margin: 0,
@@ -223,10 +223,10 @@ export default function ScrollVideoSection() {
       }}>
         <canvas
           ref={canvasRef}
-          style={{ display: 'block', position: 'absolute' , top: '50%' , left: '50%' , transform: 'translate(-50%, -50%)', }}
+          style={{ display: 'block', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', }}
         />
 
-{/* ─── Tarjetas Flotantes (Overlays) ─── */}
+        {/* ─── Tarjetas Flotantes (Overlays) ─── */}
         <div className="absolute inset-0 pointer-events-none w-full h-full max-w-[1600px] mx-auto">
           {OVERLAYS.map((overlay, index) => (
             <div
@@ -247,11 +247,11 @@ export default function ScrollVideoSection() {
                 <div className="p-2 bg-white/10 rounded-full">
                   {overlay.icon}
                 </div>
-                <h3 className="font-playfair font-bold text-xl tracking-wide text-white">
+                <h3 className="font-playfair font-bold text-xl tracking-wide text-green-700">
                   {overlay.title}
                 </h3>
               </div>
-              <p className="text-sm leading-relaxed text-white/80 font-light">
+              <p className="text-sm leading-relaxed text-[#6B5038] ">
                 {overlay.description}
               </p>
             </div>

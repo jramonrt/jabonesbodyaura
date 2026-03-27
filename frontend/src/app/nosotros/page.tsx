@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 };
 
 const pillars = [
-  {  title: 'Origen Natural', desc: 'Seleccionamos cada ingrediente por su pureza y origen responsable.' },
-  {  title: 'Proceso Artesanal', desc: 'Elaboramos en pequeños lotes para asegurar atención en cada detalle.' },
-  {  title: 'Compromiso Real', desc: 'Sin greenwashing: somos transparentes en lo que ponemos —y no ponemos— en nuestros jabones.' },
+  { title: 'Origen Natural', desc: 'Seleccionamos cada ingrediente por su pureza y origen responsable.' },
+  { title: 'Proceso Artesanal', desc: 'Elaboramos en pequeños lotes para asegurar atención en cada detalle.' },
+  { title: 'Compromiso Real', desc: 'Sin greenwashing: somos transparentes en lo que ponemos —y no ponemos— en nuestros jabones.' },
 ];
 
 export default function NosotrosPage() {
@@ -34,17 +34,13 @@ export default function NosotrosPage() {
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal direction="left">
-              {/* Visual placeholder */}
-              <div
-                className="rounded-3xl aspect-square flex items-center justify-center relative overflow-hidden"
-                style={{ background: 'linear-gradient(145deg, #EDE5D5, #F5F0E8)' }}
-              >
-                <div className="absolute top-8 left-8 w-32 h-32 rounded-full border border-beige/30" />
-                <div className="absolute bottom-8 right-8 w-20 h-20 rounded-full bg-verde/8" />
-                <div className="text-center z-10">
-                  <div className="text-7xl mb-3">🌱</div>
-                  <p className="font-playfair italic text-gris text-sm">Desde el origen natural</p>
-                </div>
+              {/* Profile/About image */}
+              <div className="rounded-3xl aspect-square relative overflow-hidden shadow-soft">
+                <img
+                  src="/img/imgjab3.png"
+                  alt="Historia Bodyaura"
+                  className="absolute inset-0 w-full h-full object-cover z-0"
+                />
               </div>
             </ScrollReveal>
 

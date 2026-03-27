@@ -74,11 +74,13 @@ export default function ProductoPage() {
             {/* Soap image */}
             <ScrollReveal direction="right" className="flex justify-center items-end">
               <div
-                className="w-full max-w-sm rounded-t-3xl flex items-center justify-center py-12 relative overflow-hidden"
-                style={{ background: 'linear-gradient(160deg, #EDE5D5, #E8DFD0)' }}
+                className="w-full max-w-sm rounded-t-3xl relative overflow-hidden aspect-[3/4] shadow-soft bg-white"
               >
-                <div className="absolute top-[-40px] right-[-40px] w-48 h-48 rounded-full border border-beige/30" />
-                <SoapVisual size="lg" />
+                <img
+                  src="/img/imgjab2.png"
+                  alt="Jabón Artesanal Bodyaura"
+                  className="absolute inset-0 w-full h-full object-cover z-0"
+                />
               </div>
             </ScrollReveal>
           </div>

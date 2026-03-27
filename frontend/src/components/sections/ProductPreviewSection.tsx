@@ -23,21 +23,14 @@ export default function ProductPreviewSection() {
               <div
                 className="w-full aspect-[4/5] rounded-3xl flex items-center justify-center relative overflow-hidden"
                 style={{
-                  background: 'linear-gradient(160deg, #e2eeea 0%, #f0f7f3 50%, #d8ece3 100%)',
                   boxShadow: '0 24px 64px rgba(29, 103, 99, 0.12)',
                 }}
               >
-                {/* Decorative circles */}
-                <div
-                  className="absolute top-[-40px] right-[-40px] w-48 h-48 rounded-full"
-                  style={{ border: '1px solid rgba(155, 189, 171, 0.4)' }}
+                <img
+                  src="/img/imagbody.png"
+                  alt="Jabón Bodyaura"
+                  className="absolute inset-0 w-full h-full object-cover z-0"
                 />
-                <div
-                  className="absolute bottom-8 left-[-20px] w-28 h-28 rounded-full"
-                  style={{ background: 'rgba(46, 136, 104, 0.06)' }}
-                />
-
-                <SoapVisual size="lg" className="z-10" />
 
                 {/* Price tag */}
                 <div
@@ -51,7 +44,7 @@ export default function ProductPreviewSection() {
                     {formatCurrency(PRODUCT_PRICE)}
                   </span>
                   <span className="text-[0.65rem] tracking-wide" style={{ color: 'rgba(255,255,255,0.65)' }}>
-                    
+
                   </span>
                 </div>
               </div>

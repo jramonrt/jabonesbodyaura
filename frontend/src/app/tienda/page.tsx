@@ -40,8 +40,12 @@ export default function TiendaPage() {
                 <div className="absolute bottom-4 left-4 w-20 h-20 rounded-full bg-verde/5" />
 
                 {/* Visual */}
-                <div className="flex justify-center mb-8">
-                  <SoapVisual size="md" />
+                <div className="flex justify-center mb-8 relative z-10 h-64 rounded-xl overflow-hidden shadow-soft">
+                  <img
+                    src="/img/productimg.png"
+                    alt="Jabón Artesanal Bodyaura"
+                    className="h-full object-cover"
+                  />
                 </div>
 
                 {/* Info */}
