@@ -94,7 +94,7 @@ export default function Footer() {
           {/* Bottom */}
           <div className="flex flex-col sm:flex-row justify-between items-center gap-2 pt-6 text-xs text-white/30">
             <span>© {new Date().getFullYear()} Bodyaura. Todos los derechos reservados.</span>
-            <span>Hecho con 🌿 en Guatemala</span>
+            <span>Hecho en Guatemala</span>
           </div>
         </div>
       </div>

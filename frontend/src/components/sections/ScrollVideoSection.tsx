@@ -20,9 +20,7 @@ const OVERLAYS = [
     id: 'origen',
     startFrame: 15,
     endFrame: 45,
-    // Empujado más a la izquierda (5%) y un poco más arriba
-    position: 'left-[5%] top-[25%]',
-    icon: <Leaf size={20} className="text-[#6B5038]" />,
+    position: 'left-[10%] top-[30%]',
     title: 'Origen Natural',
     description: 'Nuestros ingredientes nacen de la tierra, cosechados en su punto de máxima pureza para cuidar tu piel.'
   },
@@ -30,9 +28,7 @@ const OVERLAYS = [
     id: 'textura',
     startFrame: 50,
     endFrame: 80,
-    // Empujado más a la derecha (5%)
-    position: 'right-[5%] top-[45%]',
-    icon: <Droplets size={20} className="text-[#5eaa7f]" />,
+    position: 'right-[10%] top-[40%]',
     title: 'Textura Sedosa',
     description: 'Una espuma densa y suave que limpia sin resecar, respetando el pH natural de tu cuerpo.'
   },
@@ -40,9 +36,7 @@ const OVERLAYS = [
     id: 'sin-quimicos',
     startFrame: 85,
     endFrame: 115,
-    // De vuelta a la izquierda, más abajo
-    position: 'left-[5%] bottom-[20%]',
-    icon: <Sparkles size={20} className="text-[#6B5038]" />,
+    position: 'left-[10%] bottom-[30%]',
     title: 'Cero Químicos',
     description: 'Sin sulfatos, sin parabenos, sin fragancias artificiales. Solo la esencia pura de la naturaleza.'
   }
@@ -226,32 +220,37 @@ export default function ScrollVideoSection() {
           style={{ display: 'block', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', }}
         />
 
+        {/* ─── Vignette Overlay para legibilidad del texto ─── */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-0" 
+          style={{ 
+            background: 'radial-gradient(circle at center, transparent 20%, rgba(10, 10, 10, 0.6) 100%)',
+          }} 
+        />
+
         {/* ─── Tarjetas Flotantes (Overlays) ─── */}
         <div className="absolute inset-0 pointer-events-none w-full h-full max-w-[1600px] mx-auto">
           {OVERLAYS.map((overlay, index) => (
             <div
               key={overlay.id}
               ref={(el) => { overlayRefs.current[index] = el; }}
-              className={`absolute ${overlay.position} max-w-[320px] md:max-w-sm p-6 rounded-2xl transition-transform will-change-transform`}
+              className={`absolute ${overlay.position} max-w-[280px] transition-transform will-change-transform flex flex-col`}
               style={{
                 opacity: 0,
-                background: 'rgba(251, 254, 250, 0.08)', // Ligeramente más transparente
-                backdropFilter: 'blur(20px)', // Más blur para compensar
-                WebkitBackdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                boxShadow: '0 12px 40px rgba(0, 0, 0, 0.3)', // Sombra más profunda
-                color: '#fbfefa',
+                color: '#fbfefa', 
+                textShadow: '0 2px 12px rgba(0,0,0,0.6)', 
               }}
             >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-white/10 rounded-full">
-                  {overlay.icon}
-                </div>
-                <h3 className="font-playfair font-bold text-xl tracking-wide text-green-700">
-                  {overlay.title}
-                </h3>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-[1px] bg-white/80" /> 
+                <span className="font-dm text-xs tracking-[0.25em] uppercase text-white/90">
+                  0{index + 1}
+                </span>
               </div>
-              <p className="text-sm leading-relaxed text-[#6B5038] ">
+              <h3 className="font-playfair text-5xl md:text-6xl italic tracking-wide text-white mb-5 leading-tight">
+                {overlay.title}
+              </h3>
+              <p className="font-dm text-sm md:text-base leading-relaxed text-white/90 font-light pl-12 border-l border-white/40">
                 {overlay.description}
               </p>
             </div>

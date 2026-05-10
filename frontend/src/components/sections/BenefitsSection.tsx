@@ -2,22 +2,22 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 
 const benefits = [
   {
-    icon: '🌿',
+    num: '01',
     title: 'Ingredientes Naturales',
     desc: 'Aceites vegetales, mantecas y extractos botánicos seleccionados por sus propiedades nutritivas.',
   },
   {
-    icon: '✋',
+    num: '02',
     title: 'Hecho a Mano',
     desc: 'Cada barra es elaborada artesanalmente en pequeños lotes para garantizar la máxima calidad.',
   },
   {
-    icon: '🫧',
+    num: '03',
     title: 'Suave en tu Piel',
     desc: 'Formulación gentil, libre de sulfatos y parabenos. Apto para todo tipo de piel, incluso sensible.',
   },
   {
-    icon: '♻️',
+    num: '04',
     title: 'Empaque Sostenible',
     desc: 'Embalaje biodegradable y mínimo, porque cuidar tu piel y el planeta no debería ser excluyente.',
   },
@@ -25,34 +25,40 @@ const benefits = [
 
 export default function BenefitsSection() {
   return (
-    <section className="section-padding" style={{ background: '#fbfefa' }}>
-      <div className="container-max">
-        <div className="text-center mb-14">
-          <ScrollReveal>
-            <span className="section-label justify-center">Por qué Bodyaura</span>
-            <h2 className="section-title mt-2 mx-auto max-w-xl">
-              La diferencia está en cada detalle
-            </h2>
-          </ScrollReveal>
+    <section className="py-32 md:py-48 px-6 md:px-24" style={{ background: '#fbfefa' }}>
+      <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-16 md:gap-32">
+        
+        {/* Left Side: Sticky Title */}
+        <div className="lg:w-1/3">
+          <div className="lg:sticky lg:top-40">
+            <ScrollReveal>
+              <span className="font-dm text-[10px] tracking-[0.3em] uppercase mb-6 block" style={{ color: '#2e8868' }}>
+                Por qué Bodyaura
+              </span>
+              <h2 className="font-playfair text-5xl md:text-6xl leading-[1.1]" style={{ color: '#1d6763' }}>
+                La diferencia está <br/>
+                <span className="italic font-light opacity-80">en cada detalle</span>
+              </h2>
+            </ScrollReveal>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Right Side: Flowing List without cards and NO emojis */}
+        <div className="lg:w-2/3 flex flex-col gap-16 md:gap-24">
           {benefits.map((b, i) => (
             <ScrollReveal key={b.title} delay={i * 100} direction="up">
-              <div className="card-soft p-7 h-full flex flex-col">
-                {/* Icon container — sage-light tint */}
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5"
-                  style={{ background: 'rgba(180, 204, 190, 0.35)' }}
-                >
-                  {b.icon}
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-t border-[#1d6763]/10 pt-10 md:pt-16">
+                <span className="font-dm text-xs tracking-[0.2em] text-[#2e8868] shrink-0 mt-2 block w-12 border-b border-[#2e8868]/30 pb-1">
+                  {b.num}
+                </span>
+                <div className="flex flex-col gap-4 w-full">
+                  <h3 className="font-playfair text-2xl md:text-3xl" style={{ color: '#1a2e28' }}>
+                    {b.title}
+                  </h3>
+                  <p className="font-dm text-base md:text-lg leading-relaxed font-light text-[#4a7a6a] max-w-xl">
+                    {b.desc}
+                  </p>
                 </div>
-                <h3 className="font-playfair font-semibold text-lg mb-2" style={{ color: '#1a2e28' }}>
-                  {b.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#5a7a6e' }}>
-                  {b.desc}
-                </p>
               </div>
             </ScrollReveal>
           ))}

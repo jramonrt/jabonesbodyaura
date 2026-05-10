@@ -1,82 +1,44 @@
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
-const testimonials = [
-  {
-    name: 'María G.',
-    location: 'GTM',
-    text: 'Mi piel nunca había estado tan suave. El aroma es increíble y dura todo el día. No volvería a usar otro jabón.',
-    rating: 5,
-  },
-  {
-    name: 'Sofía R.',
-    location: 'GTM',
-    text: 'Tengo piel sensible y por fin encontré algo que no me irrita. Los ingredientes son reales, se nota la diferencia.',
-    rating: 5,
-  },
-  {
-    name: 'Ana L.',
-    location: 'GTM',
-    text: 'Lo compré como regalo y terminé pidiendo uno para mí. El empaque es hermoso y el jabón en sí es un lujo accesible.',
-    rating: 5,
-  },
-];
-
 export default function TestimonialsSection() {
   return (
-    <section className="section-padding" style={{ background: '#fbfefa' }}>
-      <div className="container-max">
-        <div className="text-center mb-14">
+    <section className="py-32 md:py-48 px-6 md:px-24 bg-[#1a2e28] text-white relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none grain-overlay opacity-[0.25] mix-blend-overlay" />
+
+      {/* Letras masivas de fondo */}
+      <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-playfair text-[15vw] md:text-[25vw] italic text-white/[0.02] leading-none pointer-events-none whitespace-nowrap">
+        Ciencia
+      </span>
+
+      <div className="max-w-[1200px] mx-auto relative z-10">
+        <div className="text-center mb-20 md:mb-32">
           <ScrollReveal>
-            <span className="section-label justify-center">Testimonios</span>
-            <h2 className="section-title mt-2 mx-auto max-w-lg">
-              Lo que dicen quienes ya lo viven
-            </h2>
+            <span className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#b4ccbe] block">
+            </span>
           </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <ScrollReveal key={t.name} delay={i * 120}>
-              <div className="card-soft p-7 h-full flex flex-col">
-                {/* Stars — lavender tint */}
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: t.rating }).map((_, j) => (
-                    <span key={j} className="text-sm" style={{ color: '#a8a7c6' }}>
-                      ★
-                    </span>
-                  ))}
-                </div>
+        <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
+          <ScrollReveal delay={0} direction="up">
+            <h2 className="font-playfair text-4xl md:text-6xl lg:text-7xl leading-[1.2] text-white mb-12">
+              Tu piel no es un lienzo inerte, <br className="hidden md:block" />
+              <span className="italic text-[#b4ccbe] opacity-90">es un ecosistema biológico vivo.</span>
+            </h2>
 
-                <p
-                  className="text-sm leading-relaxed flex-1 mb-5 font-playfair italic"
-                  style={{ color: 'rgba(26, 46, 40, 0.75)' }}
-                >
-                  &ldquo;{t.text}&rdquo;
-                </p>
+            <p className="font-dm text-sm md:text-base leading-relaxed font-light text-white/70 max-w-2xl mx-auto mb-16">
+              Como químicos biólogos, entendemos la ciencia detrás de la barrera cutánea.
+              Nos negamos a formular con sulfatos abrasivos o fragancias sintéticas que alteren tu microbioma natural.
+              Extraemos la pureza de cada activo botánico y formulamos con precisión de laboratorio
+              para crear productos funcionales, eficaces y en total armonía con tu fisiología.
+            </p>
 
-                <div className="flex items-center gap-3">
-                  {/* Avatar — sage tint */}
-                  <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center font-playfair font-bold text-sm"
-                    style={{
-                      background: 'rgba(155, 189, 171, 0.3)',
-                      color: '#1d6763',
-                    }}
-                  >
-                    {t.name[0]}
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium" style={{ color: '#1a2e28' }}>
-                      {t.name}
-                    </p>
-                    <p className="text-xs" style={{ color: '#7a9a8e' }}>
-                      {t.location}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-px h-16 bg-[#b4ccbe]/40 mb-2" />
+              <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-white font-medium">
+                La Ciencia de Bodyaura
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

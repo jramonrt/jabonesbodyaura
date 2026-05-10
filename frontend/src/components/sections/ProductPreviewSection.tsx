@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
-import SoapVisual from '@/components/ui/SoapVisual';
 import { formatCurrency, PRODUCT_PRICE } from '@/lib/utils';
 
 const highlights = [
@@ -14,106 +13,78 @@ const highlights = [
 
 export default function ProductPreviewSection() {
   return (
-    <section className="section-padding" style={{ background: '#fbfefa' }}>
-      <div className="container-max">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Image */}
+    <section className="py-32 md:py-48 px-6 md:px-24" style={{ background: '#fbfefa' }}>
+      <div className="max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
+
+          {/* Image Side: Clean, no shadow, big */}
           <ScrollReveal direction="left">
-            <div className="relative">
-              <div
-                className="w-full aspect-[4/5] rounded-3xl flex items-center justify-center relative overflow-hidden"
-                style={{
-                  boxShadow: '0 24px 64px rgba(29, 103, 99, 0.12)',
-                }}
-              >
-                <img
-                  src="/img/imagbody.png"
-                  alt="Jabón Bodyaura"
-                  className="absolute inset-0 w-full h-full object-cover z-0"
-                />
+            <div className="relative w-full aspect-[3/4] overflow-hidden group">
+              <img
+                src="/img/imagbody.png"
+                alt="Jabón Bodyaura"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-[1.03]"
+              />
+              {/* Elegant price overlay */}
+              <div className="absolute bottom-8 left-8 flex flex-col z-10 drop-shadow-md">
+                <span className="font-dm text-[10px] tracking-[0.2em] uppercase text-white">
 
-                {/* Price tag */}
-                <div
-                  className="absolute top-6 right-6 rounded-2xl px-4 py-2 text-center"
-                  style={{
-                    background: '#2e8868',
-                    boxShadow: '0 4px 16px rgba(46, 136, 104, 0.4)',
-                  }}
-                >
-                  <span className="block font-playfair font-bold text-xl leading-none text-white">
-                    {formatCurrency(PRODUCT_PRICE)}
-                  </span>
-                  <span className="text-[0.65rem] tracking-wide" style={{ color: 'rgba(255,255,255,0.65)' }}>
-
-                  </span>
-                </div>
-              </div>
-
-              {/* Floating card */}
-              <div
-                className="absolute -bottom-6 -left-4 bg-white rounded-2xl px-4 py-3 flex items-center gap-3"
-                style={{
-                  boxShadow: '0 8px 28px rgba(29, 103, 99, 0.12)',
-                  border: '1px solid rgba(180, 204, 190, 0.5)',
-                }}
-              >
-                <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-sm"
-                  style={{ background: 'rgba(180, 204, 190, 0.35)' }}
-                >
-                  🌿
-                </div>
-                <div>
-                  <p className="text-xs font-semibold" style={{ color: '#1a2e28' }}>
-                    Ingredientes
-                  </p>
-                  <p className="text-[0.7rem]" style={{ color: '#5a7a6e' }}>
-                    100% naturales
-                  </p>
-                </div>
+                </span>
+                <span className="font-playfair text-4xl md:text-5xl text-white drop-shadow-lg">
+                  {formatCurrency(PRODUCT_PRICE)}
+                </span>
               </div>
             </div>
           </ScrollReveal>
 
-          {/* Info */}
+          {/* Info Side: Typographic */}
           <ScrollReveal direction="right">
-            <span className="section-label">Nuestro Producto</span>
-            <h2 className="section-title mt-2 mb-2 max-w-md">
-              Jabón Artesanal
-              <span className="block font-playfair italic" style={{ color: '#2e8868' }}>
-                Bodyaura
+            <div className="flex flex-col lg:pl-12">
+              <span className="font-dm text-[10px] tracking-[0.3em] uppercase mb-6 block text-[#2e8868]">
+                Nuestro Producto
               </span>
-            </h2>
-            <p className="text-sm mb-1" style={{ color: '#7a9a8e' }}>
-              Barra premium de cuidado corporal · 120g
-            </p>
-            <p className="leading-relaxed mb-7 text-sm" style={{ color: '#5a7a6e' }}>
-              Un jabón que nutre, suaviza y deja tu piel con un aroma delicado que perdura.
-              Formulado con los mejores ingredientes de origen vegetal.
-            </p>
+              <h2 className="font-playfair text-5xl md:text-7xl lg:text-[5rem] leading-[0.9] text-[#1d6763] mb-8 tracking-tighter">
+                Jabón <br /> Artesanal <br />
+                <span className="italic font-light opacity-90 block mt-2">Bodyaura</span>
+              </h2>
 
-            <ul className="space-y-3 mb-8">
-              {highlights.map((h) => (
-                <li key={h} className="flex items-center gap-3 text-sm" style={{ color: '#1a2e28' }}>
-                  <span
-                    className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ background: 'rgba(94, 170, 127, 0.2)' }}
-                  >
-                    <Check size={11} style={{ color: '#2e8868' }} strokeWidth={2.5} />
+              <div className="w-16 h-px bg-[#1d6763]/20 mb-8" />
+
+              <p className="font-dm text-xs md:text-sm uppercase tracking-widest text-[#7a9a8e] mb-8">
+                Barra premium de cuidado corporal · 120g
+              </p>
+
+              <p className="font-dm text-lg md:text-xl leading-relaxed text-[#4a7a6a] font-light mb-12 max-w-md">
+                Un jabón que nutre, suaviza y deja tu piel con un aroma delicado que perdura. Formulado con los mejores ingredientes de origen vegetal.
+              </p>
+
+              <ul className="space-y-5 mb-16">
+                {highlights.map((h, i) => (
+                  <li key={i} className="flex items-center gap-6">
+                    <div className="w-8 h-[1px] bg-[#2e8868]/40" />
+                    <span className="font-dm text-sm md:text-base font-light text-[#1a2e28]">{h}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex items-center gap-8 md:gap-12">
+                <Link
+                  href="/tienda"
+                  className="group inline-flex items-center gap-4 text-xs font-medium uppercase tracking-[0.15em] text-[var(--teal-deep)]"
+                >
+                  <span className="border-b border-[var(--teal-deep)] pb-1">Comprar ahora</span>
+                  <span className="w-12 h-12 rounded-full border border-[var(--teal-deep)] flex items-center justify-center group-hover:bg-[var(--teal-deep)] group-hover:text-white transition-all duration-500">
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </span>
-                  {h}
-                </li>
-              ))}
-            </ul>
+                </Link>
 
-            <div className="flex flex-wrap gap-3">
-              <Link href="/producto" className="btn-secondary">
-                Ver detalles
-              </Link>
-              <Link href="/tienda" className="btn-primary">
-                Comprar ahora
-                <ArrowRight size={15} />
-              </Link>
+                <Link
+                  href="/producto"
+                  className="font-dm text-[10px] md:text-xs uppercase tracking-widest text-[#5a7a6e] hover:text-[#1d6763] transition-colors"
+                >
+                  Ver detalles
+                </Link>
+              </div>
             </div>
           </ScrollReveal>
         </div>

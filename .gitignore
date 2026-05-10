@@ -47,3 +47,9 @@ desktop.ini
 .idea/
 *.suo
 *.user
+
+# ─── Agente local ──────────────────────────────────────────
+.agent/
+.agent/
+.agent-data/
+.agent-skills.json
